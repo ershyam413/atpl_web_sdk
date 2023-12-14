@@ -30,34 +30,34 @@
     "docdash": {
         "static": true,
         "sort": true,
-        "disqus": "countly-documentation",
+        "disqus": "Atpl-documentation",
 		"openGraph": {
-			"title": "Countly Web SDK Documentation",
+			"title": "Atpl Web SDK Documentation",
 			"type": "website",
 			"image": "",
-			"site_name": "Countly Web SDK Documentation",
-			"url": "https://countly.github.io/countly-sdk-web/"
+			"site_name": "Atpl Web SDK Documentation",
+			"url": "https://Atpl.github.io/Atpl-sdk-web/"
 		},
 		"meta": {
-			"title": "Countly Web SDK Documentation",
-			"description": "JSDoc generated Countly Web SDK documentation",
-			"keyword": "countly, web, sdk, jsdoc, doc, documentation"
+			"title": "Atpl Web SDK Documentation",
+			"description": "JSDoc generated Atpl Web SDK documentation",
+			"keyword": "Atpl, web, sdk, jsdoc, doc, documentation"
 		},
         "search": true,
         "collapse": true,
         "typedefs": true,
         "removeQuotes": "all",
         "menu":{
-            "Countly":{
-                "href":"https://countly.com/"
+            "Atpl":{
+                "href":"https://Atpl.com/"
             },
             "Web SDK Docs":{
                 "href":"https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-"
             },
             "Github Repository":{
-                "href":"https://github.com/Countly/countly-sdk-web"
+                "href":"https://github.com/Atpl/Atpl-sdk-web"
             }
         },
-        "scripts": ["https://stats.count.ly/sdk/countly-docs.js"]
+        "scripts": ["https://stats.count.ly/sdk/Atpl-docs.js"]
     }
 }

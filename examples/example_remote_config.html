@@ -4,14 +4,14 @@
     <!-- Page styling here -->
     <link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-    <!--Countly script-->
-    <script type='text/javascript' src='../lib/countly.js'></script>
+    <!--Atpl script-->
+    <script type='text/javascript' src='../lib/Atpl.js'></script>
     <script type='text/javascript'>
 
-        //initializing countly with params and remote config
-        Countly.init({
+        //initializing Atpl with params and remote config
+        Atpl.init({
             app_key: "YOUR_APP_KEY",
-            url: "https://your.domain.countly", //your server goes here
+            url: "https://your.domain.Atpl", //your server goes here
             debug: true,
             rc_automatic_optin_for_ab: true, // set it to false for not opting in users for AB testing while fetching the remote config (only with latest API)
             use_explicit_rc_api: false, // set it to true to use the latest API
@@ -31,30 +31,30 @@
     </div>
 
     <center>
-        <img src="./images/team_countly.jpg" id="wallpaper" />
+        <img src="./images/team_Atpl.jpg" id="wallpaper" />
         <br />
         <input type="button" onclick="fetchConfig()" value="Fetch Config">
         <input type="button" onclick="getConfig()" value="Get Config">
         <input type="button" onclick="getConfig('test')" value="Get config for key Test">
         <input type="button" onclick="ab(['key1','key2'])" value="Enroll user to AB test">
-        <p><a href='https://countly.com/'>Countly</a></p>
+        <p><a href='https://Atpl.com/'>Atpl</a></p>
     </center>
     <script type='text/javascript'>
         // fetches all keys
         function fetchConfig() {
-            Countly.fetch_remote_config(function (err, config) {
+            Atpl.fetch_remote_config(function (err, config) {
                 alert(JSON.stringify(config));
             });
         }
 
         // enroll user
         function ab(keyArray) {
-            Countly.enrollUserToAb(keyArray);
+            Atpl.enrollUserToAb(keyArray);
         }
 
         //get config
         function getConfig(key) {
-            alert(JSON.stringify(Countly.get_remote_config(key)));
+            alert(JSON.stringify(Atpl.get_remote_config(key)));
         }
     </script>
 </body>

@@ -3,50 +3,50 @@
 <head>
 	<!-- Page styling here -->
 	<link rel='stylesheet' type='text/css' href='./style/style.css'>
-	<p><a href='https://countly.com/'>Countly</a></p>
+	<p><a href='https://Atpl.com/'>Atpl</a></p>
 
-	<!--Countly script-->
-	<script type='text/javascript' src='../lib/countly.js'></script>
+	<!--Atpl script-->
+	<script type='text/javascript' src='../lib/Atpl.js'></script>
 	<script type='text/javascript'>
-		Countly = Countly || {};
-		Countly.q = Countly.q || [];
+		Atpl = Atpl || {};
+		Atpl.q = Atpl.q || [];
 
 
 
-		//initializing first instance, which will be global Countly
-		Countly.init({
+		//initializing first instance, which will be global Atpl
+		Atpl.init({
 			app_key: "YOUR_APP_KEY1",
-			url: "https://your.domain.countly", //your server goes here
+			url: "https://your.domain.Atpl", //your server goes here
 			debug: true
 		})
 		//report event to first app
-		Countly.add_event({
+		Atpl.add_event({
 			key: "first_app"
 		});
 
 
 
 		//initialize second instance for another app synchronously
-		var Countly2 = Countly.init({
+		var Atpl2 = Atpl.init({
 			app_key: "YOUR_APP_KEY2", //must have different APP key
-			url: "https://your.domain.countly", //your server goes here
+			url: "https://your.domain.Atpl", //your server goes here
 			debug: true
 		});
 		//report event to second app
-		Countly2.add_event({
+		Atpl2.add_event({
 			key: "second_app"
 		});
 
 
 
 		//initialize third instance for another app asynchronously
-		Countly.q.push(["init", {
+		Atpl.q.push(["init", {
 			app_key: "YOUR_APP_KEY3", //must have different APP key
-			url: "https://your.domain.countly", //your server goes here
+			url: "https://your.domain.Atpl", //your server goes here
 			debug: true
 		}])
 		//report event to third app asynchronously by passing app key as first arg
-		Countly.q.push(["YOUR_APP_KEY3", "add_event", {
+		Atpl.q.push(["YOUR_APP_KEY3", "add_event", {
 			key: "third_app"
 		}]);
 	</script>
@@ -60,7 +60,7 @@
 	</div>
 
 	<center>
-		<img src="./images/team_countly.jpg" id="wallpaper" />
+		<img src="./images/team_Atpl.jpg" id="wallpaper" />
 	</center>
 </body>
 

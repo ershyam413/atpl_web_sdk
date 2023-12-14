@@ -4,36 +4,36 @@
 	<!-- Page styling here -->
 	<link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-	<!--Countly script-->
+	<!--Atpl script-->
 	<script type='text/javascript'>
 		//some default pre init
-		var Countly = Countly || {};
-		Countly.q = Countly.q || [];
+		var Atpl = Atpl || {};
+		Atpl.q = Atpl.q || [];
 
-		//provide countly initialization parameters
-		Countly.app_key = "YOUR_APP_KEY";
-		Countly.url = "https://your.domain.countly"; //your server goes here
-		Countly.debug = true;
+		//provide Atpl initialization parameters
+		Atpl.app_key = "YOUR_APP_KEY";
+		Atpl.url = "https://your.domain.Atpl"; //your server goes here
+		Atpl.debug = true;
 
 		//start pushing function calls to queue
 		//track sessions automatically
-		Countly.q.push(['track_sessions']);
+		Atpl.q.push(['track_sessions']);
 
 		//track sessions automatically
-		Countly.q.push(['track_pageview']);
+		Atpl.q.push(['track_pageview']);
 
-		//load countly script asynchronously
+		//load Atpl script asynchronously
 		(function () {
 			var cly = document.createElement('script'); cly.type = 'text/javascript';
 			cly.async = true;
 			//enter url of script here
-			cly.src = '../lib/countly.js';
-			cly.onload = function () { Countly.init() };
+			cly.src = '../lib/Atpl.js';
+			cly.onload = function () { Atpl.init() };
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
 		})();
 		//send event on button click
 		function clickEvent() {
-			Countly.q.push(['add_event', {
+			Atpl.q.push(['add_event', {
 				key: "buttonClick",
 				"segmentation": {
 					"id": "id"
@@ -46,15 +46,15 @@
 <body>
 	<!-- Header, banner etc. Top part of your site  -->
 	<div id="header">
-		<h1>Async Countly Implementation</h1>
+		<h1>Async Atpl Implementation</h1>
 		<img id="logo" src="./images/logo.png">
 	</div>
 
 	<center>
-		<img src="./images/team_countly.jpg" id="wallpaper" />
+		<img src="./images/team_Atpl.jpg" id="wallpaper" />
 		<br />
 		<input type="button" id="testButton" onclick="clickEvent()" value="Test Button">
-		<p><a href='https://countly.com/'>Countly</a></p>
+		<p><a href='https://Atpl.com/'>Atpl</a></p>
 	</center>
 </body>
 

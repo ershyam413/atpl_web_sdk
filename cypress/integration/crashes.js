@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Atpl = require("../../lib/Atpl");
 var hp = require("../support/helper");
 
 function initMain() {
-    Countly.init({
+    Atpl.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.Atpl",
         test_mode: true
     });
 }
@@ -19,12 +19,12 @@ describe("Crashes tests ", () => {
     it("Checks if a caught crash is reported correctly", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.track_errors();
+            Atpl.track_errors();
             try {
                 cause_error();
             }
             catch (err) {
-                Countly.log_error(err);
+                Atpl.log_error(err);
             }
             cy.wait(3000).then(() => {
                 cy.fetch_local_request_queue().then((rq) => {

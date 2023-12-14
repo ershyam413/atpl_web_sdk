@@ -6,26 +6,26 @@
 
 	<script type='text/javascript'>
 		//some default pre init
-		var Countly = Countly || {};
-		Countly.q = Countly.q || [];
-		Countly.onload = Countly.onload || [];
-		//provide countly initialization parameters
-		Countly.app_key = "YOUR_APP_KEY";
-		Countly.debug = true;
-		Countly.url = "https://your.domain.countly"; //your server goes here
+		var Atpl = Atpl || {};
+		Atpl.q = Atpl.q || [];
+		Atpl.onload = Atpl.onload || [];
+		//provide Atpl initialization parameters
+		Atpl.app_key = "YOUR_APP_KEY";
+		Atpl.debug = true;
+		Atpl.url = "https://your.domain.Atpl"; //your server goes here
 		window.cly_ga_test_mode = true;
-		Countly.test_logs = [];
+		Atpl.test_logs = [];
 		//start pushing function calls to queue
 		//track sessions automatically
 
 
-		//load countly script asynchronously
+		//load Atpl script asynchronously
 		(function () {
 			var cly = document.createElement('script'); cly.type = 'text/javascript';
 			cly.async = true;
 			//enter url of script here
-			cly.src = '../lib/countly.js';
-			cly.onload = function () { Countly.init() };
+			cly.src = '../lib/Atpl.js';
+			cly.onload = function () { Atpl.init() };
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
 		})();
 	</script>
@@ -38,8 +38,8 @@
 				m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
 		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-		Countly.onload.push(function () {
-			CountlyGAAdapter();
+		Atpl.onload.push(function () {
+			AtplGAAdapter();
 			// call create call with ga id
 			ga('create', 'UA-56295140-3', 'auto');
 
@@ -183,7 +183,7 @@
 	</div>
 
 	<center>
-		<img src="./images/team_countly.jpg" id="wallpaper" />
+		<img src="./images/team_Atpl.jpg" id="wallpaper" />
 	</center>
 </body>
 

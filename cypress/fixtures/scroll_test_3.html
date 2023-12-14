@@ -1,6 +1,6 @@
 <html>
 <head>
-  <script type='text/javascript' src='../../lib/countly.js'></script>
+  <script type='text/javascript' src='../../lib/Atpl.js'></script>
   <script type='text/javascript'>
     // here we implement a cookie and localStorage clearing logic
 const deleteAllCookies = () => {
@@ -14,25 +14,25 @@ for (const cookie of cookies) {
 window.localStorage.clear();
 deleteAllCookies();
 console.error("cleared the storage");
-  Countly.init({
+  Atpl.init({
     app_key: "YOUR_APP_KEY",
-    url: "https://your.domain.countly",
+    url: "https://your.domain.Atpl",
     debug:true,
     test_mode: true
   })
-  Countly.track_sessions();
-  Countly.track_pageview();
-  Countly.track_scrolls();
+  Atpl.track_sessions();
+  Atpl.track_pageview();
+  Atpl.track_scrolls();
   </script>
 </head>
 <body>
   <script type='text/javascript'>
   function view1(){
-    Countly.track_pageview("v1");
+    Atpl.track_pageview("v1");
     console.log("scroll test, v1 triggered");
   }
   function view2(){
-    Countly.track_pageview("v2");
+    Atpl.track_pageview("v2");
     console.log("scroll test, v2 triggered");
   }
   </script>

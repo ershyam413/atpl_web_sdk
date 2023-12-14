@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 
 import Users from './Users';
-import Countly from 'countly-sdk-web';
+import Atpl from 'Atpl-sdk-web';
 import './styles.css';
 
 const Header = (props) => {
@@ -21,7 +21,7 @@ const Header = (props) => {
             localStorage.setItem("clydemo-login-state", true);
 
             //Change user's device on login - He is now an identified user
-            Countly.q.push(['change_id', user.device_id]);
+            Atpl.q.push(['change_id', user.device_id]);
             props.setLoginState(true);
             setUserData(user);
             history.push("/");
@@ -33,7 +33,7 @@ const Header = (props) => {
         localStorage.removeItem("clydemo-user");
 
         //Change user's device on logout - He is now an anonymous user
-        Countly.q.push(['change_id', "cly-device-demo-id"]);
+        Atpl.q.push(['change_id', "cly-device-demo-id"]);
         props.setLoginState(false);
         history.push("/");
     }
@@ -43,7 +43,7 @@ const Header = (props) => {
     }
 
     const setUserData = (user) => {
-        Countly.q.push(['user_details', {
+        Atpl.q.push(['user_details', {
             "name": user.name,
             "username": user.username,
             "email": user.email,
@@ -64,7 +64,7 @@ const Header = (props) => {
                 <Link className="link" to="/">Home</Link>
             </div>
             <div>
-                <h1 style={{textTransform: 'uppercase'}}>Countly React Demo</h1>
+                <h1 style={{textTransform: 'uppercase'}}>Atpl React Demo</h1>
             </div>
             <div style={{display:'flex', padding: '10px'}}>
                 <p>

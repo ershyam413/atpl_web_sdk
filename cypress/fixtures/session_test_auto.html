@@ -1,8 +1,8 @@
 <!--Here we have automatic session tracking-->
 <html>
 <head>
-<!--Countly script-->
-<script type='text/javascript' src='../../lib/countly.js'></script>
+<!--Atpl script-->
+<script type='text/javascript' src='../../lib/Atpl.js'></script>
 <script type='module'>
 import { queryExtractor } from '../support/integration_helper.js';
 // here we implement a cookie and localStorage clearing logic
@@ -21,24 +21,24 @@ console.error("cleared the storage");
 // we extract the url query and dissect the embedded configuration object within
 const confObj = queryExtractor(window.location.search);
 
-//initializing countly with params
-Countly.init({
+//initializing Atpl with params
+Atpl.init({
 	app_key: "YOUR_APP_KEY",
-	url: "https://your.domain.countly",
+	url: "https://your.domain.Atpl",
   device_id: "auto",
   session_update: 4,
   test_mode: true,
   use_session_cookie: confObj.use_session_cookie || false,
 	debug:true
 })
-Countly.track_sessions();
-// Countly.track_pageview();
+Atpl.track_sessions();
+// Atpl.track_pageview();
 </script>
 </head>
 <body>
 <script type='text/javascript' >
 function clickEvent(){
-	Countly.add_event({
+	Atpl.add_event({
     key: "buttonClick",
     "segmentation": {
         "id": "id"

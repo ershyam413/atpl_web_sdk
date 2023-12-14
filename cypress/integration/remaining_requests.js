@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Atpl = require("../../lib/Atpl");
 var hp = require("../support/helper");
 
 function initMain(shouldStopRequests) {
-    Countly.init({
+    Atpl.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.Atpl",
         app_version: "1.0",
         // would prevent requests from being sent to the server if true
         test_mode: shouldStopRequests
@@ -28,14 +28,14 @@ describe("Remaining requests tests ", () => {
             });
             cy.wait(1000).then(() => {
                 // Create a session
-                Countly.begin_session();
+                Atpl.begin_session();
                 hp.interceptAndCheckRequests(undefined, undefined, undefined, "?begin_session=*", "begin_session", (requestParams) => {
                     expect(requestParams.get("begin_session")).to.equal("1");
                     expect(requestParams.get("rr")).to.equal("3");
                     expect(requestParams.get("av")).to.equal(av);
                 });
                 // End the session
-                Countly.end_session(undefined, true);
+                Atpl.end_session(undefined, true);
                 hp.interceptAndCheckRequests(undefined, undefined, undefined, undefined, "end_session", (requestParams) => {
                     expect(requestParams.get("end_session")).to.equal("1");
                     expect(requestParams.get("rr")).to.equal("2");
@@ -59,8 +59,8 @@ describe("Remaining requests tests ", () => {
             initMain(true);
 
             // Create a session and end it
-            Countly.begin_session();
-            Countly.end_session(undefined, true);
+            Atpl.begin_session();
+            Atpl.end_session(undefined, true);
             cy.fetch_local_request_queue().then((rq) => {
                 // We expect 3 requests in queue: begin_session, end_session, orientation. health check was not in the queue
                 expect(rq.length).to.equal(3);
@@ -69,7 +69,7 @@ describe("Remaining requests tests ", () => {
                 expect(rq[2].rr).to.equal(undefined);
 
                 // Change ID
-                Countly.change_id("newID");
+                Atpl.change_id("newID");
                 cy.fetch_local_request_queue().then((rq2) => {
                     // We expect 4 requests in queue: begin_session, end_session, orientation and change ID
                     cy.log(rq2);

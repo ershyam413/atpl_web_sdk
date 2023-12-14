@@ -4,13 +4,13 @@
     <!-- Page styling here -->
     <link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-    <!--Countly script-->
-    <script type='text/javascript' src='../lib/countly.js'></script>
+    <!--Atpl script-->
+    <script type='text/javascript' src='../lib/Atpl.js'></script>
     <script type='text/javascript'>
 
-        Countly.init({
+        Atpl.init({
             app_key: 'YOUR_APP_KEY', //your app key
-            url: 'https://your.domain.countly', //your server goes here
+            url: 'https://your.domain.Atpl', //your server goes here
             debug: true
         });
         //=====================================================================================================
@@ -22,16 +22,16 @@
         //Press Enable Widget to return back to the original widget
         function enable() {
             //to re-enable rating widget if necessary 
-            Countly.enableRatingWidgets({ 'popups': ['YOUR_WIDGET_ID'] }); //example: {'popups':['12asd15fsgf546516a5sdf']}
+            Atpl.enableRatingWidgets({ 'popups': ['YOUR_WIDGET_ID'] }); //example: {'popups':['12asd15fsgf546516a5sdf']}
         }
         function pop() {
             //to manually popup the widget
-            Countly.presentRatingWidgetWithID("YOUR_WIDGET_ID"); // example: "12asd15fsgf546516a5sdf"
+            Atpl.presentRatingWidgetWithID("YOUR_WIDGET_ID"); // example: "12asd15fsgf546516a5sdf"
         }
         function multi() {
             //to show multiple widgets
             var widgets = ["YOUR_WIDGET_ID", "YOUR_WIDGET_ID"]; // example: ["12asd15fsgf546516a5sdf", "45646asd8asdweqrfg54"]
-            Countly.initializeRatingWidgets(widgets);
+            Atpl.initializeRatingWidgets(widgets);
         }
 
     </script>
@@ -45,8 +45,8 @@
     </div>
 
     <center>
-        <img src="./images/team_countly.jpg" id="wallpaper" />
-        <p><a href='https://countly.com/'>Countly</a></p>
+        <img src="./images/team_Atpl.jpg" id="wallpaper" />
+        <p><a href='https://Atpl.com/'>Atpl</a></p>
         <p><button onclick="enable()">Enable Widget</button></p>
         <p><button onclick="pop()">Pop Widget</button></p>
         <p><button onclick="multi()">Multiple Widgets</button></p>

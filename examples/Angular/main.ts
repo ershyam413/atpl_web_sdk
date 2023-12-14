@@ -4,16 +4,16 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-import Countly from 'countly-sdk-web';
+import Atpl from 'Atpl-sdk-web';
 
-window.Countly = Countly;
+window.Atpl = Atpl;
 
-Countly.init({
+Atpl.init({
   app_key: "YOUR_APP_KEY",
-  url: "https://your.domain.countly",
+  url: "https://your.domain.Atpl",
   debug: true
 });
-Countly.track_sessions();
+Atpl.track_sessions();
 
 if (environment.production) {
   enableProdMode();

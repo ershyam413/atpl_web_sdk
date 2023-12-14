@@ -1,4 +1,4 @@
-declare module 'countly-sdk-web';
+declare module 'Atpl-sdk-web';
 interface Window {
-  Countly: any;
+  Atpl: any;
 }

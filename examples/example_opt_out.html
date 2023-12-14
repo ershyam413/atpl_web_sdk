@@ -4,33 +4,33 @@
     <!-- Page styling here -->
     <link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-    <!--Countly script-->
-    <script type='text/javascript' src='../lib/countly.js'></script>
+    <!--Atpl script-->
+    <script type='text/javascript' src='../lib/Atpl.js'></script>
     <script type='text/javascript'>
 
-        //initializing countly with params
-        Countly.init({
+        //initializing Atpl with params
+        Atpl.init({
             app_key: "YOUR_APP_KEY",
-            url: "https://your.domain.countly", //your server goes here
+            url: "https://your.domain.Atpl", //your server goes here
             debug: true
         })
         //track sessions automatically
-        Countly.track_sessions();
+        Atpl.track_sessions();
 
         //track pageviews automatically
-        Countly.track_pageview();
+        Atpl.track_pageview();
 
         //track any clicks to webpages automatically
-        Countly.track_clicks();
+        Atpl.track_clicks();
 
         //track link clicks automatically
-        Countly.track_links();
+        Atpl.track_links();
 
         //track form submissions automatically
-        Countly.track_forms();
+        Atpl.track_forms();
 
         //track javascript errors
-        Countly.track_errors({ jquery: "1.10", jqueryui: "1.10" });
+        Atpl.track_errors({ jquery: "1.10", jqueryui: "1.10" });
     </script>
 </head>
 
@@ -42,23 +42,23 @@
     </div>
 
     <center>
-        <img src="./images/team_countly.jpg" id="wallpaper" />
+        <img src="./images/team_Atpl.jpg" id="wallpaper" />
         <h3 id='top'></h3>
         <p><input type="button" id="optButton" onclick="testOpt()" value=""></p>
     </center>
     <script type='text/javascript'>
         //send event on button click
         function testOpt() {
-            if (Countly.ignore_visitor) {
-                Countly.opt_in();
+            if (Atpl.ignore_visitor) {
+                Atpl.opt_in();
             }
             else {
-                Countly.opt_out();
+                Atpl.opt_out();
             }
             setOpt();
         }
         function setOpt() {
-            if (Countly.ignore_visitor) {
+            if (Atpl.ignore_visitor) {
                 //opted out, allow opt in
                 document.getElementById("top").innerHTML = "You are Opted Out";
                 document.getElementById("optButton").value = "Opt in";

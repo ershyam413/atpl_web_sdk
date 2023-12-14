@@ -3,22 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App-WithEffect';
 import * as serviceWorker from './serviceWorker';
-import Countly from 'countly-sdk-web';
+import Atpl from 'Atpl-sdk-web';
 
-//Exposing Countly to the DOM as a global variable
+//Exposing Atpl to the DOM as a global variable
 //Usecase - Heatmaps
-window.Countly = Countly;
-Countly.init({
+window.Atpl = Atpl;
+Atpl.init({
     app_key: 'YOUR_APP_KEY',
     url: 'YOUR_SERVER_URL',
     debug: true
 });
 
-Countly.q.push(['track_sessions']);
-Countly.q.push(['track_scrolls']);
-Countly.q.push(['track_clicks']);
-Countly.q.push(['track_links']);
-Countly.q.push(["track_errors"]);
+Atpl.q.push(['track_sessions']);
+Atpl.q.push(['track_scrolls']);
+Atpl.q.push(['track_clicks']);
+Atpl.q.push(['track_links']);
+Atpl.q.push(["track_errors"]);
 
 ReactDOM.render(
   <React.StrictMode>

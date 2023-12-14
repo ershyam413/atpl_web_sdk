@@ -1,12 +1,12 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Atpl = require("../../lib/Atpl");
 var hp = require("../support/helper");
 
 function initMain() {
-    Countly.init({
+    Atpl.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.Atpl",
         test_mode_eq: true,
         test_mode: true
     });
@@ -44,12 +44,12 @@ describe("View ID tests ", () => {
     it("Checks if UUID and secureRandom works as intended", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            const uuid = Countly._internals.generateUUID();
-            const id = Countly._internals.secureRandom();
+            const uuid = Atpl._internals.generateUUID();
+            const id = Atpl._internals.secureRandom();
             assert.equal(uuid.length, 36);
             assert.equal(id.length, 21);
-            const uuid2 = Countly._internals.generateUUID();
-            const id2 = Countly._internals.secureRandom();
+            const uuid2 = Atpl._internals.generateUUID();
+            const id2 = Atpl._internals.secureRandom();
             assert.equal(uuid2.length, 36);
             assert.equal(id2.length, 21);
             assert.notEqual(uuid, uuid2);
@@ -59,7 +59,7 @@ describe("View ID tests ", () => {
     it("Checks if recording page view works", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.track_view(pageNameOne);
+            Atpl.track_view(pageNameOne);
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(1);
                 cy.check_view_event(eq[0], pageNameOne, undefined, false);
@@ -69,9 +69,9 @@ describe("View ID tests ", () => {
     it("Checks if recording timed page views with same name works", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.track_view(pageNameOne);
+            Atpl.track_view(pageNameOne);
             cy.wait(3000).then(() => {
-                Countly.track_view(pageNameOne);
+                Atpl.track_view(pageNameOne);
                 cy.fetch_local_event_queue().then((eq) => {
                     cy.log(eq);
                     expect(eq.length).to.equal(3);
@@ -94,9 +94,9 @@ describe("View ID tests ", () => {
     it("Checks if recording timed page views with different name works", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.track_view(pageNameOne);
+            Atpl.track_view(pageNameOne);
             hp.waitFunction(hp.getTimestampMs(), 4000, 500, ()=>{
-                Countly.track_view(pageNameTwo);
+                Atpl.track_view(pageNameTwo);
                 cy.fetch_local_event_queue().then((eq) => {
                     expect(eq.length).to.equal(3);
                     cy.check_view_event(eq[0], pageNameOne, undefined, false);
@@ -128,16 +128,16 @@ describe("View ID tests ", () => {
     it("Checks a sequence of events and page views", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.track_view("A");
+            Atpl.track_view("A");
             hp.events(["[CLY]_view"]);
-            Countly.add_event({ key: "A" });
-            Countly.track_view("B");
+            Atpl.add_event({ key: "A" });
+            Atpl.track_view("B");
             hp.events(["[CLY]_view"]);
 
-            Countly.add_event({ key: "B" });
-            Countly.track_view("C");
+            Atpl.add_event({ key: "B" });
+            Atpl.track_view("C");
             hp.events(["[CLY]_view"]);
-            Countly.add_event({ key: "C" });
+            Atpl.add_event({ key: "C" });
 
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(26);
@@ -186,15 +186,15 @@ describe("View ID tests ", () => {
             initMain();
             hp.events(["[CLY]_view"]); // first events
 
-            Countly.track_view("A");
-            Countly.add_event({ key: "A" });
-            Countly.track_view("B");
+            Atpl.track_view("A");
+            Atpl.add_event({ key: "A" });
+            Atpl.track_view("B");
             hp.events(["[CLY]_view"]);
 
-            Countly.add_event({ key: "B" });
-            Countly.track_view("C");
+            Atpl.add_event({ key: "B" });
+            Atpl.track_view("C");
             hp.events(["[CLY]_view"]);
-            Countly.add_event({ key: "C" });
+            Atpl.add_event({ key: "C" });
 
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(26);
@@ -229,9 +229,9 @@ describe("View ID tests ", () => {
         hp.haltAndClearStorage(() => {
             initMain();
             hp.events(["[CLY]_view"]); // first events
-            Countly.end_session(); // no session started must be ignored
-            Countly.track_view("A");
-            Countly.add_event({ key: "A" });
+            Atpl.end_session(); // no session started must be ignored
+            Atpl.track_view("A");
+            Atpl.add_event({ key: "A" });
 
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(8);
@@ -249,11 +249,11 @@ describe("View ID tests ", () => {
     it("Checks a sequence of events and page views, with end_session, with session started", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.track_sessions();
+            Atpl.track_sessions();
             hp.events(["[CLY]_view"]); // first events
-            Countly.end_session(); // no view started so must be ignored
-            Countly.track_view("A");
-            Countly.add_event({ key: "A" });
+            Atpl.end_session(); // no view started so must be ignored
+            Atpl.track_view("A");
+            Atpl.add_event({ key: "A" });
 
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(9); // orientation added
@@ -273,13 +273,13 @@ describe("View ID tests ", () => {
     it("Checks a sequence of events and page views, with end_session, with session started and called after view", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.track_sessions();
+            Atpl.track_sessions();
             hp.events(["[CLY]_view"]); // first events
-            Countly.track_view("A");
-            Countly.end_session(); // no view started so must be ignored
-            Countly.add_event({ key: "A" });
+            Atpl.track_view("A");
+            Atpl.end_session(); // no view started so must be ignored
+            Atpl.add_event({ key: "A" });
 
-            Countly.track_view("B");
+            Atpl.track_view("B");
             hp.events(["[CLY]_view"]);
 
             cy.fetch_local_event_queue().then((eq) => {

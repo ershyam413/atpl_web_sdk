@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Atpl = require("../../lib/Atpl");
 var hp = require("../support/helper");
 // if you are testing on an app
 const app_key = hp.appKey;
@@ -13,9 +13,9 @@ const eventObj = {
 };
 
 function initMain() {
-    Countly.init({
+    Atpl.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.Atpl",
         session_update: 3,
         test_mode: true
     });
@@ -30,14 +30,14 @@ const dummyQueue = [
 describe("Session tests ", () => {
     it("Checks if session start, extension and ending works with a dummy queue", () => {
         hp.haltAndClearStorage(() => {
-            // initialize countly
+            // initialize Atpl
             initMain();
             // begin session
-            Countly.begin_session();
+            Atpl.begin_session();
             // wait for session extension
             cy.wait(3000).then(() => {
                 // end the session
-                Countly.end_session(10, true);
+                Atpl.end_session(10, true);
                 var queue = dummyQueue;
                 // first object of the queue should be about begin session
                 cy.check_session(queue[0]);
@@ -50,14 +50,14 @@ describe("Session tests ", () => {
     });
     it("Checks if session start, extension and ending works", () => {
         hp.haltAndClearStorage(() => {
-            // initialize countly
+            // initialize Atpl
             initMain();
             // begin session
-            Countly.begin_session();
+            Atpl.begin_session();
             // wait for session extension
             cy.wait(4250).then(() => {
                 // end the session
-                Countly.end_session(10, true);
+                Atpl.end_session(10, true);
                 // get the JSON string from local storage
                 cy.fetch_local_request_queue().then((rq) => {
                     // 3 sessions and 1 orientation
@@ -147,30 +147,30 @@ describe("Browser session tests, manual 2, no cookie", () => {
 describe("Check request related functions", () => {
     it("Check if prepareRequest forms a proper request object", () => {
         hp.haltAndClearStorage(() => {
-            // initialize countly
+            // initialize Atpl
             initMain();
             let reqObject = {};
-            Countly._internals.prepareRequest(reqObject);
+            Atpl._internals.prepareRequest(reqObject);
             cy.check_commons(reqObject);
             cy.check_request_commons(reqObject);
         });
     });
     it("Check if prepareRequest forms a proper request object from a bad one ", () => {
         hp.haltAndClearStorage(() => {
-            // initialize countly
+            // initialize Atpl
             initMain();
             let reqObject = { app_key: null, device_id: null };
-            Countly._internals.prepareRequest(reqObject);
+            Atpl._internals.prepareRequest(reqObject);
             cy.check_commons(reqObject);
             cy.check_request_commons(reqObject);
         });
     });
     it("Check if prepareRequest forms a proper request object and not erase an extra value ", () => {
         hp.haltAndClearStorage(() => {
-            // initialize countly
+            // initialize Atpl
             initMain();
             let reqObject = { extraKey: "value" };
-            Countly._internals.prepareRequest(reqObject);
+            Atpl._internals.prepareRequest(reqObject);
             expect(reqObject.extraKey).to.equal("value");
             cy.check_commons(reqObject);
             cy.check_request_commons(reqObject);

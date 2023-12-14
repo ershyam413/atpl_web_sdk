@@ -4,7 +4,7 @@
 <head>
   <!-- Title of our tab -->
   <title>
-    Countly Web Demo
+    Atpl Web Demo
   </title>
   <!--
         // Content security policy
@@ -23,26 +23,26 @@
   <!-- Scripts for the main logic -->
   <script src="dummy_users.js"></script>
   <script src="helper_functions.js"></script>
-  <!-- Async Countly init logic here -->
+  <!-- Async Atpl init logic here -->
   <script type='text/javascript'>
-    // Countly Related Settings
-    var Countly = Countly || {};
-    Countly.q = Countly.q || [];
-    // Countly Config
-    Countly.app_key = 'YOUR_APP_KEY';
-    Countly.url = 'https://your.domain.countly';
-    Countly.session_update = 30; //Time interval for session extend
-    Countly.use_session_cookie = false; //if false, begin_session on every app open, be it in new tab
-    Countly.debug = true;
-    Countly.loadAPMScriptsAsync = true;
-    Countly.require_consent = false;
-    Countly.namespace = "demo";
-    Countly.inactivity_time = 1; //User will marked inactive after 1 min, i.e. stop_time and no extend session or end session
-    Countly.offline_mode = false;
-    Countly.force_post = false;
+    // Atpl Related Settings
+    var Atpl = Atpl || {};
+    Atpl.q = Atpl.q || [];
+    // Atpl Config
+    Atpl.app_key = 'YOUR_APP_KEY';
+    Atpl.url = 'https://your.domain.Atpl';
+    Atpl.session_update = 30; //Time interval for session extend
+    Atpl.use_session_cookie = false; //if false, begin_session on every app open, be it in new tab
+    Atpl.debug = true;
+    Atpl.loadAPMScriptsAsync = true;
+    Atpl.require_consent = false;
+    Atpl.namespace = "demo";
+    Atpl.inactivity_time = 1; //User will marked inactive after 1 min, i.e. stop_time and no extend session or end session
+    Atpl.offline_mode = false;
+    Atpl.force_post = false;
 
     // Example usage of remote config to fetch remote configurations 
-    // Countly.remote_config = function(err, rc) {
+    // Atpl.remote_config = function(err, rc) {
     //     if (err) {
     //         return;
     //     }
@@ -52,7 +52,7 @@
     // };
 
     // (optionally) provide custom feature tree if needed
-    // Countly.q.push(['group_features', {
+    // Atpl.q.push(['group_features', {
     //     activity: ["sessions", "events", "views", "location", "remote-config", "apm"],
     //     interaction: ["scrolls", "clicks", "feedback", "star-rating", "attribution"],
     //     whereabouts: ["users", "forms"]
@@ -64,58 +64,58 @@
     //     var consents = localStorage.getItem("consents");
 
     //     if (consents) {
-    //         Countly.q.push(['add_consent', JSON.parse(consents)]);
+    //         Atpl.q.push(['add_consent', JSON.parse(consents)]);
     //     }
     //     else {
     //         //prompt user for consent
     //         var consent = confirm("We are going to track you. Do you give your consent ?");
     //         consents = ["activity", "interaction", "whereabouts"];
     //         if (consent) {
-    //             Countly.q.push(['add_consent', consents]);
+    //             Atpl.q.push(['add_consent', consents]);
     //             localStorage.setItem("consents", JSON.stringify(consents));
     //         }
     //         else {
-    //             Countly.q.push(['remove_consent', consents]);
+    //             Atpl.q.push(['remove_consent', consents]);
     //             localStorage.removeItem("consents");
     //         }
     //     }
     // }
 
     // Tracking user actions
-    Countly.q.push(['track_sessions']);
-    Countly.q.push(['track_pageview']);
+    Atpl.q.push(['track_sessions']);
+    Atpl.q.push(['track_pageview']);
 
     // For heatmaps record scrolls and clicks
-    Countly.q.push(['track_scrolls']);
-    Countly.q.push(['track_clicks']);
+    Atpl.q.push(['track_scrolls']);
+    Atpl.q.push(['track_clicks']);
 
-    // Countly.q.push(['track_links', '']);
-    // Countly.q.push(['track_forms']);
-    // Countly.q.push(['recordDirectAttribution']);
+    // Atpl.q.push(['track_links', '']);
+    // Atpl.q.push(['track_forms']);
+    // Atpl.q.push(['recordDirectAttribution']);
 
     // enable APM
-    Countly.q.push(["track_performance"]);
+    Atpl.q.push(["track_performance"]);
 
-    // init Countly
+    // init Atpl
     (function () {
       var cly = document.createElement('script');
       cly.type = 'text/javascript';
       cly.async = true;
       // provide the correct path according to your project structure
-      cly.src = '../../lib/countly.js';
+      cly.src = '../../lib/Atpl.js';
       cly.onload = function () {
-        Countly.init();
+        Atpl.init();
       };
       var s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(cly, s);
     })();
 
     // Change device id randomly
-    // Countly.change_id(Countly._internals.generateUUID());
+    // Atpl.change_id(Atpl._internals.generateUUID());
 
     setTimeout(function () {
       // if the email form is filled report 30 sec after init
-      Countly.q.push(['track_forms', $("#mynewform-form")[0]]);
+      Atpl.q.push(['track_forms', $("#mynewform-form")[0]]);
     }, 30000);
   </script>
 </head>
@@ -133,7 +133,7 @@
   <!-- Main content  -->
   <center>
     <!-- Center Image. Anything you want to show at the center.  -->
-    <img src="../images/team_countly.jpg" id="wallpaper" />
+    <img src="../images/team_Atpl.jpg" id="wallpaper" />
 
     <!-- Welcome Text. With user name. -->
     <h2 id="welcome-user">No User is Signed In</h2>
@@ -276,7 +276,7 @@
         localStorage.removeItem("web-demo-user");
         $("#welcome-user").text("Not Signed In");
         $("#user-state").text("Sign In");
-        Countly.q.push(['change_id', Countly._internals.generateUUID()]);
+        Atpl.q.push(['change_id', Atpl._internals.generateUUID()]);
       } else {
         // Sign user in
         var login = confirm("Do you want to login ?");
@@ -289,7 +289,7 @@
           localStorage.setItem("web-demo-login-state", true);
 
           // Change user's device on login - He is now an identified user
-          Countly.q.push(['change_id', user.device_id]);
+          Atpl.q.push(['change_id', user.device_id]);
 
           // send user_details
           setUserData(user);
@@ -317,21 +317,21 @@
 
     // fetch nps widgets
     $("#nps").on("click", function () {
-      Countly.q.push(["get_available_feedback_widgets", allWidgetsCallbackNPS]);
+      Atpl.q.push(["get_available_feedback_widgets", allWidgetsCallbackNPS]);
     });
     // fetch survey widgets
     $("#survey").on("click", function () {
-      Countly.q.push(["get_available_feedback_widgets", allWidgetsCallbackSurvey]);
+      Atpl.q.push(["get_available_feedback_widgets", allWidgetsCallbackSurvey]);
     });
     // fetch rating widgets
     $("#rating").on("click", function () {
-      Countly.q.push(["get_available_feedback_widgets", allWidgetsCallbackRating]);
+      Atpl.q.push(["get_available_feedback_widgets", allWidgetsCallbackRating]);
     });
     // fetch random feedback widgets
     $("#random").on("click", function () {
       const callbacks = [allWidgetsCallbackNPS, allWidgetsCallbackSurvey, allWidgetsCallbackRating];
       var widget = getRandomNumber(0, callbacks.length - 1);
-      Countly.q.push(["get_available_feedback_widgets", callbacks[widget]]);
+      Atpl.q.push(["get_available_feedback_widgets", callbacks[widget]]);
     });
 
     //display a rating widget with ID
@@ -340,7 +340,7 @@
       if (!id) {
         return;
       } else {
-        Countly.enableRatingWidgets({
+        Atpl.enableRatingWidgets({
           'popups': [id.trim()]
         });
       }
@@ -354,13 +354,13 @@
       } else {
         //trim whitespace
         const idArray = ids.split(',').map(a => a.trim());
-        Countly.initializeRatingWidgets(idArray);
+        Atpl.initializeRatingWidgets(idArray);
       }
     });
 
     // fetch, display and use the remote configuration, this is an example implementation, must be changed for your own specific use case
     $("#call-remote-config").on("click", function () {
-      Countly.fetch_remote_config(function (err, remoteConfigs) {
+      Atpl.fetch_remote_config(function (err, remoteConfigs) {
         if (err) {
           return;
         }
@@ -378,7 +378,7 @@
         alert("Please provide a valid event name!!");
         return;
       } else {
-        Countly.q.push(['add_event', {
+        Atpl.q.push(['add_event', {
           "key": eventName,
           "count": 1
         }]);
@@ -393,7 +393,7 @@
         alert("Please provide a valid ID!!");
         return;
       } else {
-        Countly.q.push(['change_id', ID, merge]);
+        Atpl.q.push(['change_id', ID, merge]);
         document.getElementById("form-div").style.display = "block";
       }
 
@@ -404,7 +404,7 @@
     });
     // change device ID button logic
     $("#change-device-id").on("click", function () {
-      var id = Countly._internals.generateUUID();
+      var id = Atpl._internals.generateUUID();
       document.getElementById("id-input").value = id;
       document.getElementById("form-div").style.display = "block";
     });

@@ -1,29 +1,29 @@
-import Countly from "countly-sdk-web";
+import Atpl from "Atpl-sdk-web";
 
-Countly.init({
+Atpl.init({
   app_key: "YOUR_APP_KEY",
   app_version: "1.0",
-  url: "https://your.domain.countly",
+  url: "https://your.domain.Atpl",
   debug: true
 });
 
 //track sessions automatically
-Countly.track_sessions();
+Atpl.track_sessions();
 
 //track pageviews automatically
-Countly.track_pageview();
+Atpl.track_pageview();
 
 //track any clicks to webpages automatically
-Countly.track_clicks();
+Atpl.track_clicks();
 
 //track link clicks automatically
-Countly.track_links();
+Atpl.track_links();
 
 //track form submissions automatically
-Countly.track_forms();
+Atpl.track_forms();
 
 //track javascript errors
-Countly.track_errors();
+Atpl.track_errors();
 
 //let's cause some errors
 function cause_error(){
@@ -32,16 +32,16 @@ function cause_error(){
 
 window.onload = function() {
   document.getElementById("handled_error").onclick = function handled_error(){
-      Countly.add_log('Pressed handled button'); 
+      Atpl.add_log('Pressed handled button'); 
       try {
           cause_error();
       } catch(err){
-          Countly.log_error(err)
+          Atpl.log_error(err)
       }
   };
 
   document.getElementById("unhandled_error").onclick = function unhandled_error(){
-      Countly.add_log('Pressed unhandled button'); 
+      Atpl.add_log('Pressed unhandled button'); 
       cause_error();
   };
 }

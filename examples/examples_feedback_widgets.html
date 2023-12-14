@@ -4,13 +4,13 @@
   <!-- Page styling here -->
   <link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-  <!--Countly script-->
-  <script type='text/javascript' src='../lib/countly.js'></script>
+  <!--Atpl script-->
+  <script type='text/javascript' src='../lib/Atpl.js'></script>
   <script type='text/javascript'>
 
-    Countly.init({
+    Atpl.init({
       app_key: 'YOUR_APP_KEY', //your app key
-      url: 'https://your.domain.countly', //your server goes here
+      url: 'https://your.domain.Atpl', //your server goes here
       debug: true
     });
 
@@ -19,11 +19,11 @@
     //=================================================
     function fetchAndDisplayWidget() {
       // Fetch user's feedbacks widgets from the server (must have been created at server first)
-      Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
+      Atpl.get_available_feedback_widgets(feedbackWidgetsCallback);
     }
 
     // Callback function to execute after fetching the feedback widgets
-    function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
+    function feedbackWidgetsCallback(AtplPresentableFeedback, err) {
       if (err) { // error handling
         console.log(err);
         return;
@@ -31,9 +31,9 @@
 
       // Decide which which widget to show. Here the first rating widget is selected. 
       const widgetType = "rating";
-      const countlyFeedbackWidget = countlyPresentableFeedback.find(widget => widget.type === widgetType);
-      if (!countlyFeedbackWidget) {
-        console.error(`[Countly] No ${widgetType} widget found`);
+      const AtplFeedbackWidget = AtplPresentableFeedback.find(widget => widget.type === widgetType);
+      if (!AtplFeedbackWidget) {
+        console.error(`[Atpl] No ${widgetType} widget found`);
         return;
       }
 
@@ -45,7 +45,7 @@
       const segmentation = { page: "home_page" };
 
       // Display the feedback widget to the end user 
-      Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
+      Atpl.present_feedback_widget(AtplFeedbackWidget, selectorId, selectorClass, segmentation);
     }
 
     //=================================================
@@ -54,7 +54,7 @@
     // an example of getting the widget list, using it to get widget data and then recording data for it manually. widgetType can be 'nps', 'survey' or 'rating'    
     function getFeedbackWidgetListAndDoThings(widgetType) {
       // get the widget list
-      Countly.get_available_feedback_widgets(
+      Atpl.get_available_feedback_widgets(
         // callback function, 1st param is the feedback widget list
         function (feedbackList, err) {
           if (err) { // error handling
@@ -63,14 +63,14 @@
           }
 
           // find the widget object with the given widget type. This or a similar implementation can be used while using fetchAndDisplayWidget() as well
-          const countlyFeedbackWidget = feedbackList.find(widget => widget.type === widgetType);
-          if (!countlyFeedbackWidget) {
-            console.error(`[Countly] No ${widgetType} widget found`);
+          const AtplFeedbackWidget = feedbackList.find(widget => widget.type === widgetType);
+          if (!AtplFeedbackWidget) {
+            console.error(`[Atpl] No ${widgetType} widget found`);
             return;
           }
 
           // Get data with the widget object
-          Countly.getFeedbackWidgetData(countlyFeedbackWidget,
+          Atpl.getFeedbackWidgetData(AtplFeedbackWidget,
             // callback function, 1st param is the feedback widget data
             function (feedbackData, err) {
               if (err) { // error handling
@@ -78,17 +78,17 @@
                 return;
               }
 
-              const CountlyWidgetData = feedbackData;
+              const AtplWidgetData = feedbackData;
               // record data according to the widget type
-              if (CountlyWidgetData.type === 'nps') {
-                Countly.reportFeedbackWidgetManually(countlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment" });
-              } else if (CountlyWidgetData.type === 'survey') {
+              if (AtplWidgetData.type === 'nps') {
+                Atpl.reportFeedbackWidgetManually(AtplFeedbackWidget, AtplWidgetData, { rating: 3, comment: "comment" });
+              } else if (AtplWidgetData.type === 'survey') {
                 var widgetResponse = {};
                 // form the key/value pairs according to data
-                widgetResponse["answ-" + CountlyWidgetData.questions[0].id] = CountlyWidgetData.questions[0].type === "rating" ? 3 : "answer";
-                Countly.reportFeedbackWidgetManually(countlyFeedbackWidget, CountlyWidgetData, widgetResponse);
-              } else if (CountlyWidgetData.type === 'rating') {
-                Countly.reportFeedbackWidgetManually(countlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment", email: "email", contactMe: true });
+                widgetResponse["answ-" + AtplWidgetData.questions[0].id] = AtplWidgetData.questions[0].type === "rating" ? 3 : "answer";
+                Atpl.reportFeedbackWidgetManually(AtplFeedbackWidget, AtplWidgetData, widgetResponse);
+              } else if (AtplWidgetData.type === 'rating') {
+                Atpl.reportFeedbackWidgetManually(AtplFeedbackWidget, AtplWidgetData, { rating: 3, comment: "comment", email: "email", contactMe: true });
               }
             }
 
@@ -106,8 +106,8 @@
   </div>
 
   <center>
-    <img src="./images/team_countly.jpg" id="wallpaper" />
-    <p><a href='https://countly.com/'>Countly</a></p>
+    <img src="./images/team_Atpl.jpg" id="wallpaper" />
+    <p><a href='https://Atpl.com/'>Atpl</a></p>
     <p><button onclick="fetchAndDisplayWidget()">Enable Feedback Widget</button></p>
     <p><button onclick="getFeedbackWidgetListAndDoThings('nps')">Manually Record NPS Data</button></p>
     <p><button onclick="getFeedbackWidgetListAndDoThings('survey')">Manually Record Survey Data</button></p>

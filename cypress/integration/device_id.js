@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Atpl = require("../../lib/Atpl");
 var hp = require("../support/helper");
 
 function initMain(deviceId, offline, searchQuery, clear, rq, eq) {
-    Countly.init({
+    Atpl.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.Atpl",
         device_id: deviceId,
         test_mode: rq,
         test_mode_eq: eq,
@@ -34,11 +34,11 @@ describe("Device ID init tests for session cookies", ()=>{
     it("Default behavior", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false);
-            Countly.begin_session();
+            Atpl.begin_session();
             cy.fetch_from_storage(undefined, "cly_session").then((c1) => {
                 cy.log("session cookie: " + c1);
                 const cookie1 = c1;
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, false);
                     cy.fetch_from_storage(undefined, "cly_session").then((c2) => {
@@ -53,14 +53,14 @@ describe("Device ID init tests for session cookies", ()=>{
     it("Default behavior, change_id, merge", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false);
-            Countly.begin_session();
+            Atpl.begin_session();
             cy.fetch_from_storage(undefined, "cly_session").then((c1) => {
                 cy.log("session cookie: " + c1);
                 const cookie1 = c1;
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, false);
-                    Countly.change_id("new_id", true);
+                    Atpl.change_id("new_id", true);
                     cy.fetch_from_storage(undefined, "cly_session").then((c2) => {
                         cy.log("session cookie: " + c2);
                         const cookie2 = c2;
@@ -75,14 +75,14 @@ describe("Device ID init tests for session cookies", ()=>{
     it("Default behavior, change_id, no merge", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false);
-            Countly.begin_session();
+            Atpl.begin_session();
             cy.fetch_from_storage(undefined, "cly_session").then((c1) => {
                 cy.log("session cookie: " + c1);
                 const cookie1 = c1;
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, false);
-                    Countly.change_id("new_id");
+                    Atpl.change_id("new_id");
                     cy.fetch_from_storage(undefined, "cly_session").then((c2) => {
                         cy.log("session cookie: " + c2);
                         const cookie2 = c2;
@@ -95,11 +95,11 @@ describe("Device ID init tests for session cookies", ()=>{
     it("Clear storage behavior", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false);
-            Countly.begin_session();
+            Atpl.begin_session();
             cy.fetch_from_storage(undefined, "cly_session").then((c1) => {
                 cy.log("session cookie: " + c1);
                 const cookie1 = c1;
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, true); // clear stored id
                     cy.fetch_from_storage(undefined, "cly_session").then((c2) => {
@@ -122,12 +122,12 @@ describe("Device ID init tests for event flushing", ()=>{
     it("Default behavior", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false, undefined, true);
-            Countly.add_event(event);
+            Atpl.add_event(event);
             cy.fetch_local_event_queue().then((e1) => {
                 cy.log("event queue: " + e1);
                 const event1 = e1;
 
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, false, undefined, true);
                     cy.fetch_local_event_queue().then((e2) => {
@@ -142,15 +142,15 @@ describe("Device ID init tests for event flushing", ()=>{
     it("Default behavior, change_id, merge", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false, undefined, true);
-            Countly.add_event(event);
+            Atpl.add_event(event);
             cy.fetch_local_event_queue().then((e1) => {
                 cy.log("event queue: " + e1);
                 const event1 = e1;
 
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, false, undefined, true);
-                    Countly.change_id("new_id", true);
+                    Atpl.change_id("new_id", true);
                     cy.fetch_local_event_queue().then((e2) => {
                         cy.log("event queue: " + e2);
                         const event2 = e2;
@@ -165,15 +165,15 @@ describe("Device ID init tests for event flushing", ()=>{
     it("Default behavior, change_id, no merge", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false, undefined, true);
-            Countly.add_event(event);
+            Atpl.add_event(event);
             cy.fetch_local_event_queue().then((e1) => {
                 cy.log("event queue: " + e1);
                 const event1 = e1;
 
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, false, undefined, true);
-                    Countly.change_id("new_id");
+                    Atpl.change_id("new_id");
                     cy.fetch_local_event_queue().then((e2) => {
                         cy.log("event queue: " + e2);
                         const event2 = e2;
@@ -186,12 +186,12 @@ describe("Device ID init tests for event flushing", ()=>{
     it("Clear storage behavior", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false, undefined, true);
-            Countly.add_event(event);
+            Atpl.add_event(event);
             cy.fetch_local_event_queue().then((e1) => {
                 cy.log("event queue: " + e1);
                 const event1 = e1;
 
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, true, undefined, true);
                     cy.wait(1000).then(() => {
@@ -215,13 +215,13 @@ describe("Device ID init tests for request state", ()=>{
     it("Default behavior", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false, true, true);
-            Countly.add_event(event);
+            Atpl.add_event(event);
             cy.fetch_local_request_queue().then((r1) => {
                 cy.log("request queue: " + r1);
                 const req1 = r1;
                 assert.equal(r1.length, 0);
 
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, false, true, true);
                     cy.fetch_local_request_queue().then((r2) => {
@@ -237,16 +237,16 @@ describe("Device ID init tests for request state", ()=>{
     it("Default behavior, change_id, merge", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false, true, true);
-            Countly.add_event(event);
+            Atpl.add_event(event);
             cy.fetch_local_request_queue().then((r1) => {
                 cy.log("request queue: " + r1);
                 const req1 = r1;
                 assert.equal(r1.length, 0);
 
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, false, true, true);
-                    Countly.change_id("new_id", true);
+                    Atpl.change_id("new_id", true);
                     cy.fetch_local_request_queue().then((r2) => {
                         cy.log("request queue: " + r2);
                         const req2 = r2;
@@ -260,16 +260,16 @@ describe("Device ID init tests for request state", ()=>{
     it("Default behavior, change_id, no merge", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false, true, true);
-            Countly.add_event(event);
+            Atpl.add_event(event);
             cy.fetch_local_request_queue().then((r1) => {
                 cy.log("request queue: " + r1);
                 const req1 = r1;
                 assert.equal(r1.length, 0);
 
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, false, true, true);
-                    Countly.change_id("new_id");
+                    Atpl.change_id("new_id");
                     cy.fetch_local_request_queue().then((r2) => {
                         cy.log("request queue: " + r2);
                         const req2 = r2;
@@ -285,13 +285,13 @@ describe("Device ID init tests for request state", ()=>{
     it("Clear storage behavior", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(undefined, false, undefined, false, true, true);
-            Countly.add_event(event);
+            Atpl.add_event(event);
             cy.fetch_local_request_queue().then((r1) => {
                 cy.log("request queue: " + r1);
                 const req1 = r1;
                 assert.equal(r1.length, 0);
 
-                Countly.halt();
+                Atpl.halt();
                 cy.wait(1000).then(() => {
                     initMain(undefined, false, undefined, true, true, true);
                     cy.fetch_local_request_queue().then((r2) => {
@@ -307,7 +307,7 @@ describe("Device ID init tests for request state", ()=>{
         hp.haltAndClearStorage(() => {
             localStorage.setItem("YOUR_APP_KEY/cly_id", "12345678901234567890123456789012345678901234567890123456789012345678901234567890");
             initMain(undefined, false, undefined, false, true, true);
-            expect(Countly.get_device_id()).to.equal("12345678901234567890123456789012345678901234567890123456789012345678901234567890");
+            expect(Atpl.get_device_id()).to.equal("12345678901234567890123456789012345678901234567890123456789012345678901234567890");
         });
     });
 });

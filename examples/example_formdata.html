@@ -7,19 +7,19 @@ Example on collecting user information from submitted forms
 	<!-- Page styling here -->
 	<link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-	<!--Countly script-->
-	<script type='text/javascript' src='../lib/countly.js'></script>
+	<!--Atpl script-->
+	<script type='text/javascript' src='../lib/Atpl.js'></script>
 	<script type='text/javascript'>
 
-		//initializing countly with params
-		Countly.init({
+		//initializing Atpl with params
+		Atpl.init({
 			app_key: "YOUR_APP_KEY",
-			url: "https://your.domain.countly", //your server goes here
+			url: "https://your.domain.Atpl", //your server goes here
 			debug: true
 		});
-		Countly.begin_session();
+		Atpl.begin_session();
 		//gather user information automatically
-		Countly.collect_from_forms(document, true);
+		Atpl.collect_from_forms(document, true);
 	</script>
 </head>
 
@@ -31,7 +31,7 @@ Example on collecting user information from submitted forms
 	</div>
 
 	<center>
-		<img src="./images/team_countly.jpg" id="wallpaper" />
+		<img src="./images/team_Atpl.jpg" id="wallpaper" />
 		<form method='post' name='test_form'>
 			<!-- ignore this input -->
 			<p><input type="text" name="e" value="notmyemail@notmydomain.com" class="cly_user_ignore"></p>

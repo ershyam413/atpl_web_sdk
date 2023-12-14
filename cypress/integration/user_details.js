@@ -1,12 +1,12 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Atpl = require("../../lib/Atpl");
 var hp = require("../support/helper");
 
 function initMain() {
-    Countly.init({
+    Atpl.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.Atpl",
         test_mode_eq: true,
         test_mode: true
     });
@@ -30,7 +30,7 @@ describe("User details tests ", () => {
     it("Checks if user detail recording works (normal flow)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.user_details(userDetailObj);
+            Atpl.user_details(userDetailObj);
             cy.fetch_local_request_queue().then((rq) => {
                 expect(rq.length).to.equal(1);
                 cy.check_user_details(rq[0], userDetailObj);
@@ -40,13 +40,13 @@ describe("User details tests ", () => {
     it("Checks if user detail recording works (events are flushed)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.add_event(eventObj);
+            Atpl.add_event(eventObj);
             cy.fetch_local_event_queue().then((eq) => { // event should be in event queue
                 expect(eq.length).to.equal(1);
                 cy.check_event(eq[0], eventObj, undefined, false);
             });
             cy.wait(300).then(() => {
-                Countly.user_details(userDetailObj);
+                Atpl.user_details(userDetailObj);
                 cy.fetch_local_request_queue().then((rq) => { // events and user details must be here
                     expect(rq.length).to.equal(2);
                     cy.check_event(JSON.parse(rq[0].events)[0], eventObj, undefined, false);
@@ -61,8 +61,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (set)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.set("key", "value");
-            Countly.userData.save();
+            Atpl.userData.set("key", "value");
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -76,8 +76,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (set, array)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.set("key", ["value"]);
-            Countly.userData.save();
+            Atpl.userData.set("key", ["value"]);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -91,8 +91,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (unset)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.unset("key"); // unset works by sending an empty string with the key
-            Countly.userData.save();
+            Atpl.userData.unset("key"); // unset works by sending an empty string with the key
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -106,8 +106,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (set_once)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.set_once("key", "value");
-            Countly.userData.save();
+            Atpl.userData.set_once("key", "value");
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -121,8 +121,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (increment)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.increment("key");
-            Countly.userData.save();
+            Atpl.userData.increment("key");
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -136,8 +136,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (increment_by, + number )", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.increment_by("key", 10);
-            Countly.userData.save();
+            Atpl.userData.increment_by("key", 10);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -151,8 +151,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (increment_by, - number )", () => { // TODO: Investigate
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.increment_by("key", -10);
-            Countly.userData.save();
+            Atpl.userData.increment_by("key", -10);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -166,8 +166,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (increment_by, string)", () => { // TODO: Investigate
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.increment_by("key", "10");
-            Countly.userData.save();
+            Atpl.userData.increment_by("key", "10");
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -181,8 +181,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (multiply, + number)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.multiply("key", 10);
-            Countly.userData.save();
+            Atpl.userData.multiply("key", 10);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -196,8 +196,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (multiply, - number)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.multiply("key", -10);
-            Countly.userData.save();
+            Atpl.userData.multiply("key", -10);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -211,8 +211,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (multiply, string)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.multiply("key", "10");
-            Countly.userData.save();
+            Atpl.userData.multiply("key", "10");
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -226,8 +226,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (max, number)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.max("key", 10);
-            Countly.userData.save();
+            Atpl.userData.max("key", 10);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -241,8 +241,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (max, string)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.max("key", "10");
-            Countly.userData.save();
+            Atpl.userData.max("key", "10");
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -256,8 +256,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (min, number)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.min("key", 10);
-            Countly.userData.save();
+            Atpl.userData.min("key", 10);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -271,8 +271,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (min, string)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.min("key", "10");
-            Countly.userData.save();
+            Atpl.userData.min("key", "10");
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -286,8 +286,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (push, number)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.push("key", 10);
-            Countly.userData.save();
+            Atpl.userData.push("key", 10);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -301,8 +301,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (push, string)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.push("key", "10");
-            Countly.userData.save();
+            Atpl.userData.push("key", "10");
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -316,8 +316,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (push_unique, number)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.push_unique("key", 10);
-            Countly.userData.save();
+            Atpl.userData.push_unique("key", 10);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -331,8 +331,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (push_unique, string)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.push_unique("key", "10");
-            Countly.userData.save();
+            Atpl.userData.push_unique("key", "10");
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -346,8 +346,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (pull, number)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.pull("key", 10);
-            Countly.userData.save();
+            Atpl.userData.pull("key", 10);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -361,8 +361,8 @@ describe("User details tests ", () => {
     it("Checks if custom detail recording works (pull, string)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.pull("key", "10");
-            Countly.userData.save();
+            Atpl.userData.pull("key", "10");
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -376,18 +376,18 @@ describe("User details tests ", () => {
     it("Checks if all custom detail recording works together", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.set("key", "value");
-            Countly.userData.unset("key2");
-            Countly.userData.set_once("key3", 1);
-            Countly.userData.increment("key4");
-            Countly.userData.increment_by("key5", 2);
-            Countly.userData.multiply("key6", 3);
-            Countly.userData.max("key7", 4);
-            Countly.userData.min("key8", 5);
-            Countly.userData.push("key9", 6);
-            Countly.userData.push_unique("key10", 7);
-            Countly.userData.pull("key11", 8);
-            Countly.userData.save();
+            Atpl.userData.set("key", "value");
+            Atpl.userData.unset("key2");
+            Atpl.userData.set_once("key3", 1);
+            Atpl.userData.increment("key4");
+            Atpl.userData.increment_by("key5", 2);
+            Atpl.userData.multiply("key6", 3);
+            Atpl.userData.max("key7", 4);
+            Atpl.userData.min("key8", 5);
+            Atpl.userData.push("key9", 6);
+            Atpl.userData.push_unique("key10", 7);
+            Atpl.userData.pull("key11", 8);
+            Atpl.userData.save();
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -411,18 +411,18 @@ describe("User details tests ", () => {
     it("Checks if all custom detail recording works together (early save)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.set("key", "value");
-            Countly.userData.unset("key2");
-            Countly.userData.set_once("key3", 1);
-            Countly.userData.increment("key4");
-            Countly.userData.save();
-            Countly.userData.increment_by("key5", 2);
-            Countly.userData.multiply("key6", 3);
-            Countly.userData.max("key7", 4);
-            Countly.userData.min("key8", 5);
-            Countly.userData.push("key9", 6);
-            Countly.userData.push_unique("key10", 7);
-            Countly.userData.pull("key11", 8);
+            Atpl.userData.set("key", "value");
+            Atpl.userData.unset("key2");
+            Atpl.userData.set_once("key3", 1);
+            Atpl.userData.increment("key4");
+            Atpl.userData.save();
+            Atpl.userData.increment_by("key5", 2);
+            Atpl.userData.multiply("key6", 3);
+            Atpl.userData.max("key7", 4);
+            Atpl.userData.min("key8", 5);
+            Atpl.userData.push("key9", 6);
+            Atpl.userData.push_unique("key10", 7);
+            Atpl.userData.pull("key11", 8);
             hp.waitFunction(hp.getTimestampMs(), 300, 100, () => {
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(1);
@@ -439,17 +439,17 @@ describe("User details tests ", () => {
     it("Checks if all custom detail recording wont works without save", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.set("key", "value");
-            Countly.userData.unset("key2");
-            Countly.userData.set_once("key3", 1);
-            Countly.userData.increment("key4");
-            Countly.userData.increment_by("key5", 2);
-            Countly.userData.multiply("key6", 3);
-            Countly.userData.max("key7", 4);
-            Countly.userData.min("key8", 5);
-            Countly.userData.push("key9", 6);
-            Countly.userData.push_unique("key10", 7);
-            Countly.userData.pull("key11", 8);
+            Atpl.userData.set("key", "value");
+            Atpl.userData.unset("key2");
+            Atpl.userData.set_once("key3", 1);
+            Atpl.userData.increment("key4");
+            Atpl.userData.increment_by("key5", 2);
+            Atpl.userData.multiply("key6", 3);
+            Atpl.userData.max("key7", 4);
+            Atpl.userData.min("key8", 5);
+            Atpl.userData.push("key9", 6);
+            Atpl.userData.push_unique("key10", 7);
+            Atpl.userData.pull("key11", 8);
             cy.fetch_local_request_queue().then((rq) => {
                 expect(rq.length).to.equal(0);
             });
@@ -458,13 +458,13 @@ describe("User details tests ", () => {
     it("Checks all custom detail recording, event flush (with save)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.add_event(eventObj);
+            Atpl.add_event(eventObj);
             cy.fetch_local_event_queue().then((eq) => { // event should be in event queue
                 expect(eq.length).to.equal(1);
                 cy.check_event(eq[0], eventObj, undefined, false);
             });
             cy.wait(300).then(() => {
-                Countly.userData.set("key", "value");
+                Atpl.userData.set("key", "value");
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(0);
                 });
@@ -478,14 +478,14 @@ describe("User details tests ", () => {
     it("Checks all custom detail recording, event flush (without save)", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.add_event(eventObj);
+            Atpl.add_event(eventObj);
             cy.fetch_local_event_queue().then((eq) => { // event should be in event queue
                 expect(eq.length).to.equal(1);
                 cy.check_event(eq[0], eventObj, undefined, false);
             });
             cy.wait(300).then(() => {
-                Countly.userData.set("key", "value");
-                Countly.userData.save();
+                Atpl.userData.set("key", "value");
+                Atpl.userData.save();
 
                 cy.fetch_local_request_queue().then((rq) => {
                     expect(rq.length).to.equal(2);

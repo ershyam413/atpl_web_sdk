@@ -1,15 +1,15 @@
 {
-  "name": "countly-sdk-web",
+  "name": "Atpl-sdk-web",
   "version": "23.12.0",
-  "description": "Countly Web SDK",
-  "main": "lib/countly.js",
+  "description": "Atpl Web SDK",
+  "main": "lib/Atpl.js",
   "directories": {
     "example": "examples",
     "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "docs": "node_modules/.bin/jsdoc lib/countly.js README.md -c jsdoc_conf.json -d docs",
+    "docs": "node_modules/.bin/jsdoc lib/Atpl.js README.md -c jsdoc_conf.json -d docs",
     "build": "webpack",
     "lint": "./node_modules/.bin/eslint --ignore-path .eslintignore --fix .",
     "lintMD": "markdownlint **/*.md --fix",
@@ -19,19 +19,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Countly/countly-sdk-web"
+    "url": "https://github.com/Atpl/Atpl-sdk-web"
   },
   "keywords": [
-    "Countly",
+    "Atpl",
     "Analytics",
     "Web"
   ],
-  "author": "Countly <hello@count.ly> (https://countly.com/)",
+  "author": "Atpl <hello@count.ly> (https://Atpl.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Countly/countly-sdk-web/issues"
+    "url": "https://github.com/Atpl/Atpl-sdk-web/issues"
   },
-  "homepage": "https://countly.com/",
+  "homepage": "https://Atpl.com/",
   "devDependencies": {
     "cypress": "^9.5.0",
     "cypress-localstorage-commands": "^1.7.0",
@@ -45,12 +45,12 @@
     "stylelint": "14.9.1",
     "stylelint-config-standard": "28.0.0"
   },
-  "npmName": "countly-sdk-web",
+  "npmName": "Atpl-sdk-web",
   "npmFileMap": [
     {
       "basePath": "lib",
       "files": [
-        "countly.min.js"
+        "Atpl.min.js"
       ]
     }
   ]

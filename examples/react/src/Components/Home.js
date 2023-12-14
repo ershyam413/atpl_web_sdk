@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Users from './Users';
-import countlyImage from './countly.jpg';
+import AtplImage from './Atpl.jpg';
 
 function Home() {
     let userIndex = localStorage.getItem("clydemo-user");
@@ -14,7 +14,7 @@ function Home() {
     return (
         <div>
             <center>
-                <img src={countlyImage} alt="Home"></img>
+                <img src={AtplImage} alt="Home"></img>
                 <h1>Welcome {user.name}</h1>
             </center>
         </div>

@@ -4,13 +4,13 @@
 /* eslint-disable object-curly-spacing */
 /* eslint-disable cypress/no-unnecessary-waiting */
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Atpl = require("../../lib/Atpl");
 var hp = require("../support/helper");
 
 function initMain() {
-    Countly.init({
+    Atpl.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.Atpl",
         test_mode: true,
         test_mode_eq: true,
         debug: true
@@ -80,17 +80,17 @@ describe("Response validation tests ", () => {
     it("isResponseValid, enableRatingResponse", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            variedStatusCodeTestPack(Countly._internals.isResponseValid, enableRatingResponse, false);
-            expect(Countly._internals.isResponseValid(200, enableRatingResponse)).to.equal(false);
-            expect(Countly._internals.isResponseValid(201, enableRatingResponse)).to.equal(false);
+            variedStatusCodeTestPack(Atpl._internals.isResponseValid, enableRatingResponse, false);
+            expect(Atpl._internals.isResponseValid(200, enableRatingResponse)).to.equal(false);
+            expect(Atpl._internals.isResponseValid(201, enableRatingResponse)).to.equal(false);
         });
     });
     it("isResponseValid, enableRatingResponse", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            variedStatusCodeTestPack(Countly._internals.isResponseValidBroad, enableRatingResponse, false);
-            expect(Countly._internals.isResponseValidBroad(200, enableRatingResponse)).to.equal(true);
-            expect(Countly._internals.isResponseValidBroad(201, enableRatingResponse)).to.equal(true);
+            variedStatusCodeTestPack(Atpl._internals.isResponseValidBroad, enableRatingResponse, false);
+            expect(Atpl._internals.isResponseValidBroad(200, enableRatingResponse)).to.equal(true);
+            expect(Atpl._internals.isResponseValidBroad(201, enableRatingResponse)).to.equal(true);
         });
     });
 
@@ -98,17 +98,17 @@ describe("Response validation tests ", () => {
     it("isResponseValid, popupResponse", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            variedStatusCodeTestPack(Countly._internals.isResponseValid, popupResponse, false);
-            expect(Countly._internals.isResponseValid(200, popupResponse)).to.equal(false);
-            expect(Countly._internals.isResponseValid(201, popupResponse)).to.equal(false);
+            variedStatusCodeTestPack(Atpl._internals.isResponseValid, popupResponse, false);
+            expect(Atpl._internals.isResponseValid(200, popupResponse)).to.equal(false);
+            expect(Atpl._internals.isResponseValid(201, popupResponse)).to.equal(false);
         });
     });
     it("isResponseValidBroad, popupResponse", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            variedStatusCodeTestPack(Countly._internals.isResponseValidBroad, popupResponse, false);
-            expect(Countly._internals.isResponseValidBroad(200, popupResponse)).to.equal(true);
-            expect(Countly._internals.isResponseValidBroad(201, popupResponse)).to.equal(true);
+            variedStatusCodeTestPack(Atpl._internals.isResponseValidBroad, popupResponse, false);
+            expect(Atpl._internals.isResponseValidBroad(200, popupResponse)).to.equal(true);
+            expect(Atpl._internals.isResponseValidBroad(201, popupResponse)).to.equal(true);
         });
     });
 
@@ -116,17 +116,17 @@ describe("Response validation tests ", () => {
     it("isResponseValid, remoteConfigResponse", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            variedStatusCodeTestPack(Countly._internals.isResponseValid, remoteConfigResponse, false);
-            expect(Countly._internals.isResponseValid(200, remoteConfigResponse)).to.equal(false);
-            expect(Countly._internals.isResponseValid(201, remoteConfigResponse)).to.equal(false);
+            variedStatusCodeTestPack(Atpl._internals.isResponseValid, remoteConfigResponse, false);
+            expect(Atpl._internals.isResponseValid(200, remoteConfigResponse)).to.equal(false);
+            expect(Atpl._internals.isResponseValid(201, remoteConfigResponse)).to.equal(false);
         });
     });
     it("isResponseValidBroad, remoteConfigResponse", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            variedStatusCodeTestPack(Countly._internals.isResponseValidBroad, remoteConfigResponse, false);
-            expect(Countly._internals.isResponseValidBroad(200, remoteConfigResponse)).to.equal(true);
-            expect(Countly._internals.isResponseValidBroad(201, remoteConfigResponse)).to.equal(true);
+            variedStatusCodeTestPack(Atpl._internals.isResponseValidBroad, remoteConfigResponse, false);
+            expect(Atpl._internals.isResponseValidBroad(200, remoteConfigResponse)).to.equal(true);
+            expect(Atpl._internals.isResponseValidBroad(201, remoteConfigResponse)).to.equal(true);
         });
     });
 
@@ -134,37 +134,37 @@ describe("Response validation tests ", () => {
     it("isResponseValid, fake responses", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            fakeResponseTestPack(Countly._internals.isResponseValid, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, numberResponse, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, stringResponse, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, arrayResponse1, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, arrayResponse2, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, arrayResponse3, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, arrayResponse4, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, objectResponse1, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, objectResponse2, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, objectResponse3, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, objectResponse4, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, nullResponse, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValid, undefinedResponse, false);
+            fakeResponseTestPack(Atpl._internals.isResponseValid, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, numberResponse, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, stringResponse, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, arrayResponse1, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, arrayResponse2, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, arrayResponse3, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, arrayResponse4, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, objectResponse1, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, objectResponse2, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, objectResponse3, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, objectResponse4, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, nullResponse, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValid, undefinedResponse, false);
         });
     });
     it("isResponseValidBroad, fake responses", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            fakeResponseTestPack(Countly._internals.isResponseValidBroad, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, numberResponse, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, stringResponse, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, arrayResponse1, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, arrayResponse2, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, arrayResponse3, true);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, arrayResponse4, true);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, objectResponse1, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, objectResponse2, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, objectResponse3, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, objectResponse4, true);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, nullResponse, false);
-            fakeResponseKeyTestPack(Countly._internals.isResponseValidBroad, undefinedResponse, false);
+            fakeResponseTestPack(Atpl._internals.isResponseValidBroad, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, numberResponse, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, stringResponse, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, arrayResponse1, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, arrayResponse2, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, arrayResponse3, true);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, arrayResponse4, true);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, objectResponse1, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, objectResponse2, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, objectResponse3, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, objectResponse4, true);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, nullResponse, false);
+            fakeResponseKeyTestPack(Atpl._internals.isResponseValidBroad, undefinedResponse, false);
         });
     });
 });

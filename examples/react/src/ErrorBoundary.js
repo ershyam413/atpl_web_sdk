@@ -1,5 +1,5 @@
 import React from "react";
-import Countly from "countly-sdk-web";
+import Atpl from "Atpl-sdk-web";
 
 // Error boundaries only apply to errors that happen during rendering.
 // So errors originating anywhere else will not trigger this mechanism.
@@ -17,7 +17,7 @@ class ErrorBoundary extends React.Component {
     componentDidCatch(error, errorInfo) {
         //You can provide your own segments here too.
         let segments = {};
-        Countly.q.push(["log_error", error, segments]);
+        Atpl.q.push(["log_error", error, segments]);
     }
 
     render() {

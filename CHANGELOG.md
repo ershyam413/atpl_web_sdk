@@ -1,7 +1,7 @@
 ## 23.12.0
 - You can now provide custom storage methods to the SDK
 - You can now use the SDK in web workers
-- From this version on the SDK is bundled from the Countly JavaScript SDK
+- From this version on the SDK is bundled from the Atpl JavaScript SDK
 
 ## 23.6.3
 - You can now add segmentation while presenting a widget with 'present_feedback_widget'
@@ -188,7 +188,7 @@
 - Allow passing device_id through url parameters for cross domain tracking
 - Added internal method to clear queues
 - Fixed to always notify loaders, even if tracking is disabled
-- Added isUUID method to check if it is Countly generated id
+- Added isUUID method to check if it is Atpl generated id
 - Implemented proper storage syncing between tabs
 - Implement offline mode support with option to delay passing device_id
 
@@ -210,7 +210,7 @@
 - Added persistence tests to test suite
 - Fixed views overreporting duration in some cases
 - Added session cookie support
-- Google Analytics adapter (reuse implemented Google Analytics code to send data to Countly servers)
+- Google Analytics adapter (reuse implemented Google Analytics code to send data to Atpl servers)
 
 ## 18.08.2
 - Important Fix for regenerated device_id
@@ -304,4 +304,4 @@
 - Added storing and reporting conversions for Attribution Analytics
 
 ## 15.08
-- First official release compatible with Countly Server 15.08 functionalities
+- First official release compatible with Atpl Server 15.08 functionalities

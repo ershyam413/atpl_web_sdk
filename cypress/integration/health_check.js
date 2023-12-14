@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Atpl = require("../../lib/Atpl");
 var hp = require("../support/helper");
 
 function initMain() {
-    Countly.init({
+    Atpl.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.Atpl",
         test_mode: true
     });
 }
@@ -14,7 +14,7 @@ describe("Health Check tests ", () => {
     it("Check if health check is sent at the beginning", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            cy.intercept("https://your.domain.countly/i?*").as("getXhr");
+            cy.intercept("https://your.domain.Atpl/i?*").as("getXhr");
             cy.wait("@getXhr").then((xhr) => {
                 const url = new URL(xhr.request.url);
 

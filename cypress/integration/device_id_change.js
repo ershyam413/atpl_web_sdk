@@ -1,4 +1,4 @@
-var Countly = require("../../lib/countly");
+var Atpl = require("../../lib/Atpl");
 var hp = require("../support/helper");
 
 // ========================================
@@ -12,9 +12,9 @@ var hp = require("../support/helper");
  * @param {*} offline  - offline mode
  */
 function initMain(offline) {
-    Countly.init({
+    Atpl.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.Atpl",
         test_mode: true,
         debug: true,
         offline_mode: offline
@@ -50,7 +50,7 @@ function testDeviceIdInReqs(callbackSecond, callbackInitial, generatedID) {
         callbackInitial(); // this is for enabling offline mode
     }
 
-    Countly.add_event(eventObj("1")); // record an event.
+    Atpl.add_event(eventObj("1")); // record an event.
 
     cy.fetch_local_request_queue().then((eq) => {
         if (callbackInitial) { // testing default config
@@ -74,8 +74,8 @@ function testDeviceIdInReqs(callbackSecond, callbackInitial, generatedID) {
 
         // now lets disable temp mode
         callbackSecond(); // and give a new device id or not
-        Countly.add_event(eventObj("2")); // record another event    
-        Countly.user_details({ name: "name" }); // record user details
+        Atpl.add_event(eventObj("2")); // record another event    
+        Atpl.user_details({ name: "name" }); // record user details
         cy.wait(500); // wait for the request to be sent
 
         cy.fetch_local_request_queue().then((eq2) => {
@@ -117,7 +117,7 @@ describe("Device ID change tests ", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(true); // init in offline mode
             testDeviceIdInReqs(()=>{
-                Countly.disable_offline_mode("new ID");
+                Atpl.disable_offline_mode("new ID");
             });
         });
     });
@@ -125,7 +125,7 @@ describe("Device ID change tests ", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(true); // init in offline mode
             testDeviceIdInReqs(()=>{
-                Countly.disable_offline_mode();
+                Atpl.disable_offline_mode();
             }, undefined, true);
         });
     });
@@ -133,7 +133,7 @@ describe("Device ID change tests ", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(true); // init in offline mode
             testDeviceIdInReqs(()=>{
-                Countly.change_id("new ID", true);
+                Atpl.change_id("new ID", true);
             });
         });
     });
@@ -141,7 +141,7 @@ describe("Device ID change tests ", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(true); // init in offline mode
             testDeviceIdInReqs(()=>{
-                Countly.change_id("new ID", false);
+                Atpl.change_id("new ID", false);
             });
         });
     });
@@ -161,12 +161,12 @@ describe("Device ID change tests ", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(false); // init normally
             testDeviceIdInReqs(()=>{
-                Countly.disable_offline_mode("new ID");
+                Atpl.disable_offline_mode("new ID");
             }, ()=>{
-                Countly.add_event(eventObj("0")); // record an event prior
-                Countly.user_details({ name: "name2" }); // record user details
+                Atpl.add_event(eventObj("0")); // record an event prior
+                Atpl.user_details({ name: "name2" }); // record user details
                 cy.wait(1000); // wait for the request to be sent
-                Countly.enable_offline_mode();
+                Atpl.enable_offline_mode();
             });
         });
     });
@@ -174,12 +174,12 @@ describe("Device ID change tests ", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(false); // init normally
             testDeviceIdInReqs(()=>{
-                Countly.disable_offline_mode();
+                Atpl.disable_offline_mode();
             }, ()=>{
-                Countly.add_event(eventObj("0")); // record an event prior
-                Countly.user_details({ name: "name2" }); // record user details
+                Atpl.add_event(eventObj("0")); // record an event prior
+                Atpl.user_details({ name: "name2" }); // record user details
                 cy.wait(1000); // wait for the request to be sent
-                Countly.enable_offline_mode();
+                Atpl.enable_offline_mode();
             }, true);
         });
     });
@@ -187,12 +187,12 @@ describe("Device ID change tests ", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(false); // init normally
             testDeviceIdInReqs(()=>{
-                Countly.change_id("new ID", true);
+                Atpl.change_id("new ID", true);
             }, ()=>{
-                Countly.add_event(eventObj("0")); // record an event prior
-                Countly.user_details({ name: "name2" }); // record user details
+                Atpl.add_event(eventObj("0")); // record an event prior
+                Atpl.user_details({ name: "name2" }); // record user details
                 cy.wait(1000); // wait for the request to be sent
-                Countly.enable_offline_mode();
+                Atpl.enable_offline_mode();
             });
         });
     });
@@ -200,12 +200,12 @@ describe("Device ID change tests ", ()=>{
         hp.haltAndClearStorage(() => {
             initMain(false); // init normally
             testDeviceIdInReqs(()=>{
-                Countly.change_id("new ID", false);
+                Atpl.change_id("new ID", false);
             }, ()=>{
-                Countly.add_event(eventObj("0")); // record an event prior
-                Countly.user_details({ name: "name2" }); // record user details
+                Atpl.add_event(eventObj("0")); // record an event prior
+                Atpl.user_details({ name: "name2" }); // record user details
                 cy.wait(1000); // wait for the request to be sent
-                Countly.enable_offline_mode();
+                Atpl.enable_offline_mode();
             });
         });
     });

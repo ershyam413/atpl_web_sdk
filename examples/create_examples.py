@@ -17,8 +17,8 @@ def setup_react_example():
     shutil.copytree("React", "react-example", dirs_exist_ok=True)
 
     os.chdir("react-example")
-    # Add countly-sdk-web to dependencies in package.json
-    os.system("npm install --save countly-sdk-web@latest react-router-dom@5.3.3")
+    # Add Atpl-sdk-web to dependencies in package.json
+    os.system("npm install --save Atpl-sdk-web@latest react-router-dom@5.3.3")
     os.chdir("..")
 
 def setup_angular_example():
@@ -29,8 +29,8 @@ def setup_angular_example():
     shutil.copytree("Angular", "angular-example/src", dirs_exist_ok=True)
 
     os.chdir("angular-example")
-    # Add countly-sdk-web to dependencies in package.json
-    os.system("npm install --save countly-sdk-web@latest")
+    # Add Atpl-sdk-web to dependencies in package.json
+    os.system("npm install --save Atpl-sdk-web@latest")
     os.chdir("..")
     
 def setup_symbolication_example():
@@ -42,8 +42,8 @@ def setup_symbolication_example():
     shutil.copytree("Symbolication/src", "symbolication-example/src", dirs_exist_ok=True)
 
     os.chdir("symbolication-example")
-    # Add countly-sdk-web to dependencies in package.json
-    os.system("npm install --save countly-sdk-web@latest")
+    # Add Atpl-sdk-web to dependencies in package.json
+    os.system("npm install --save Atpl-sdk-web@latest")
     os.chdir("..")
 
 if __name__ == "__main__":
