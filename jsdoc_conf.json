@@ -1,0 +1,63 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "source": {
+        "includePattern": ".+\\.js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins": ["plugins/markdown"],
+    "markdown":{
+        "idInHeadings": true,
+        "parser": "evilstreak",
+        "dialect": "Maruku"
+    },
+    "opts": {
+        "template": "node_modules/docdash",
+        "encoding": "utf8",
+        "destination": "docs/",
+        "recurse": true,
+        "verbose": true
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "default": {
+            "includeDate": false
+        }
+    },
+    "docdash": {
+        "static": true,
+        "sort": true,
+        "disqus": "countly-documentation",
+		"openGraph": {
+			"title": "Countly Web SDK Documentation",
+			"type": "website",
+			"image": "",
+			"site_name": "Countly Web SDK Documentation",
+			"url": "https://countly.github.io/countly-sdk-web/"
+		},
+		"meta": {
+			"title": "Countly Web SDK Documentation",
+			"description": "JSDoc generated Countly Web SDK documentation",
+			"keyword": "countly, web, sdk, jsdoc, doc, documentation"
+		},
+        "search": true,
+        "collapse": true,
+        "typedefs": true,
+        "removeQuotes": "all",
+        "menu":{
+            "Countly":{
+                "href":"https://countly.com/"
+            },
+            "Web SDK Docs":{
+                "href":"https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-"
+            },
+            "Github Repository":{
+                "href":"https://github.com/Countly/countly-sdk-web"
+            }
+        },
+        "scripts": ["https://stats.count.ly/sdk/countly-docs.js"]
+    }
+}

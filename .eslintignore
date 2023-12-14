@@ -1,0 +1,12 @@
+lib
+plugin/boomerang/boomerang.min.js
+examples/
+node_modules
+.vscode
+.github
+.gitignore
+CHANGELOG.md
+cypress.json
+generateDocs.sh
+jsdoc_conf.json
+LICENSE
